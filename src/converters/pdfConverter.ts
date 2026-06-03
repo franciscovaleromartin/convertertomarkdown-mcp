@@ -3,13 +3,22 @@ import { createRequire } from 'node:module'
 
 // pdfjs-dist legacy build: compatible con Node.js sin worker
 const _require = createRequire(import.meta.url)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+// pdfjs emite warnings de canvas/fuentes en Node.js que no afectan la extracción de texto
+const _origWarn = console.warn.bind(console)
+console.warn = (...args: unknown[]) => {
+  const m = String(args[0] ?? '')
+  if (m.includes('Cannot polyfill') || m.includes('standardFontData') || m.includes('fetchStandardFont')) return
+  _origWarn(...args)
+}
+
 const pdfjsLib = _require('pdfjs-dist/legacy/build/pdf.js') as typeof import('pdfjs-dist')
 pdfjsLib.GlobalWorkerOptions.workerSrc = '' as unknown as never
 
 export async function convertPdf(filePath: string, onProgress?: (pct: number) => void): Promise<string> {
   const data = await readFile(filePath)
-  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(data) }).promise
+  // verbosity 0 = silencia warnings de canvas/fuentes que no afectan la extracción de texto
+  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(data), verbosity: 0 }).promise
 
   const textPages: string[] = []
   for (let i = 1; i <= pdf.numPages; i++) {
