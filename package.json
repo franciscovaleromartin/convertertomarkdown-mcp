@@ -1,13 +1,36 @@
 {
   "name": "convertertomarkdown-mcp",
   "version": "1.0.0",
-  "description": "MCP server to convert files (DOCX, PDF, XLSX, HTML, CSV, JSON, XML, images) to Markdown",
+  "description": "MCP server to convert files (DOCX, PDF, XLSX, HTML, CSV, JSON, XML, images) to Markdown — Node.js, no browser required",
   "type": "module",
+  "license": "MIT",
+  "author": "Francisco Valero",
+  "homepage": "https://convertertomarkdown.com",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "markdown",
+    "converter",
+    "docx",
+    "pdf",
+    "xlsx",
+    "html",
+    "ocr",
+    "llm",
+    "ai"
+  ],
   "bin": {
     "convertertomarkdown-mcp": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js"
   },
