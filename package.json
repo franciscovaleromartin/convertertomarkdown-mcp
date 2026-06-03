@@ -1,6 +1,6 @@
 {
   "name": "convertertomarkdown-mcp",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "MCP server to convert files (DOCX, PDF, XLSX, HTML, CSV, JSON, XML, images) to Markdown — Node.js, no browser required",
   "type": "module",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "ai"
   ],
   "bin": {
-    "convertertomarkdown-mcp": "./dist/index.js"
+    "convertertomarkdown-mcp": "dist/index.js"
   },
   "files": [
     "dist"
@@ -29,7 +29,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x dist/index.js",
     "prepublishOnly": "npm run build",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js"
