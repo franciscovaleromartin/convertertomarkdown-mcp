@@ -1,13 +1,18 @@
 #!/usr/bin/env node
+import './stdoutGuard.js'
 import { Server } from '@modelcontextprotocol/sdk/server/index.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js'
 import { existsSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import { resolve } from 'node:path'
 import { convertFile } from './converters/index.js'
 
+// package.json queda fuera de rootDir, así que se lee en runtime
+const { version } = createRequire(import.meta.url)('../package.json') as { version: string }
+
 const server = new Server(
-  { name: 'convertertomarkdown-mcp', version: '1.0.0' },
+  { name: 'convertertomarkdown-mcp', version },
   { capabilities: { tools: {} } }
 )
 

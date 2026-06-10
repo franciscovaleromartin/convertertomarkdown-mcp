@@ -37,6 +37,14 @@ The agent calls `convert_to_markdown` on the file, receives the Markdown, and pr
 
 No installation required. Just add it to your MCP client config and `npx` handles the rest.
 
+> **Note:** the first launch downloads the package, which can take 15s–2min depending on your network. If your MCP client times out on first connect, just retry — subsequent launches start in ~2s from the npx cache.
+
+### Claude Code
+
+```bash
+claude mcp add convertertomarkdown -- npx -y convertertomarkdown-mcp
+```
+
 ### Claude Desktop
 
 Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
