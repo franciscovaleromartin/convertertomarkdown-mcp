@@ -15,7 +15,7 @@ export async function convertXlsx(filePath: string): Promise<string> {
   const buffer = await readFile(filePath)
   const workbook = XLSX.read(buffer, { type: 'buffer' })
   if (workbook.SheetNames.length === 0) {
-    throw new Error('El archivo no contiene hojas.')
+    throw new Error('The file contains no sheets.')
   }
   return workbook.SheetNames.map(name => {
     const sheet = workbook.Sheets[name]

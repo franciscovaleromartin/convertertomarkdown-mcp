@@ -66,7 +66,7 @@ export async function convertJson(filePath: string): Promise<string> {
   try {
     JSON.parse(text)
   } catch {
-    throw new Error('JSON inválido.')
+    throw new Error('Invalid JSON.')
   }
   return `\`\`\`json\n${text}\n\`\`\``
 }

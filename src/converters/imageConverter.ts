@@ -26,7 +26,7 @@ export async function convertImage(filePath: string, onProgress?: (pct: number) 
     const { data } = await worker.recognize(filePath)
     const result = data.text.trim()
     if (!result) {
-      throw new Error('No se pudo extraer texto de la imagen. Asegúrate de que contiene texto impreso legible.')
+      throw new Error('Could not extract text from the image. Make sure it contains legible printed text.')
     }
     return result
   } finally {

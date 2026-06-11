@@ -37,7 +37,7 @@ export async function convertPdf(filePath: string, onProgress?: (pct: number) =>
   const extracted = textPages.filter(Boolean)
   if (extracted.length === 0) {
     throw new Error(
-      'Este PDF no contiene texto extraíble. Para PDFs escaneados usa la versión web: https://convertertomarkdown.com'
+      'This PDF contains no extractable text. For scanned PDFs use the web app: https://convertertomarkdown.com'
     )
   }
 

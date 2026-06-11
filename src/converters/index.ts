@@ -54,7 +54,7 @@ export async function convertFile(filePath: string, onProgress?: (pct: number) =
     }
     default:
       throw new Error(
-        `Formato no soportado: ${ext || '(sin extensión)'}. Formatos aceptados: DOCX, PDF, XLSX, XLS, HTML, TXT, MD, CSV, JSON, XML, JPG, PNG, WEBP, BMP, GIF.`
+        `Unsupported format: ${ext || '(no extension)'}. Accepted formats: DOCX, PDF, XLSX, XLS, HTML, TXT, MD, CSV, JSON, XML, JPG, PNG, WEBP, BMP, GIF.`
       )
   }
 }

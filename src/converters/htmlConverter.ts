@@ -35,7 +35,7 @@ export async function convertHtml(filePath: string): Promise<string> {
   const result = td.turndown(clean).trim()
 
   if (!result) {
-    throw new Error('No se pudo extraer contenido del HTML.')
+    throw new Error('Could not extract content from the HTML.')
   }
 
   return result

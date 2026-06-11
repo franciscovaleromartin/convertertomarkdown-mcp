@@ -8,7 +8,7 @@ export async function convertDocx(filePath: string): Promise<string> {
   const buffer = await readFile(filePath)
   const result = await mammoth.convertToHtml({ buffer })
   if (!result.value.trim()) {
-    throw new Error('No se pudo extraer texto del documento. Puede estar vacío o dañado.')
+    throw new Error('Could not extract text from the document. It may be empty or corrupted.')
   }
   return td.turndown(result.value)
 }
